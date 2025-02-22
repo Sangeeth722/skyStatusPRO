@@ -1,33 +1,56 @@
-const apiKey = "c903490f8f434691af1142842252102"
-const city = "kollam"
-const days = 1;
+function getWeather(){
 
-const params = new URLSearchParams({
-    key: apiKey,
-    q: city,
-    days: days
-});
+   
+    const apiKey = "c903490f8f434691af1142842252102"
+    const city = document.getElementById("searchField").value;
+    const days = 1;
 
-fetch(`https://api.weatherapi.com/v1/forecast.json?${params}`)
-.then(response =>response.json())
-.then(data =>{console.log(data.current.condition.icon)
-    
-    const location = data.location.name
-    const region = data.location.region
-    const country = data.location.country
-    const localTime = data.localTime.localtime
-    const lastUpdate = data.current.last_updated
-    const temp = data.current.temp
-    const wheatherIcon = "https:" + data.current.condition.icon
+    const params = new URLSearchParams({
+        key: apiKey,
+        q: city,
+        days: days
+    });
 
-
-    document.getElementById("location").innerHTML = location
-
-
-    
-    
-})
-.catch(error => console.error("Error",error));
+    fetch(`https://api.weatherapi.com/v1/forecast.json?${params}`)
+    .then(response =>response.json())
+    .then(data =>{console.log(data.current.condition.icon)
+        
+        const location = data.location.name
+        const region = data.location.region
+        const country = data.location.country
+        
+        const lastUpdate = data.current.last_updated
+        const temp = data.current.temp_c
+        const wheatherIcon = "https:" + data.current.condition.icon
+        const humidity = data.current.humidity
+        const wind = data.current.wind_kph
 
 
+        // document.getElementById("location").innerHTML =`📍 Location: ${location}, ${region}, ${country}`
 
+        
+        document.getElementById("img").src = wheatherIcon
+        
+        
+
+        document.getElementById("temprature").innerHTML  = ` ${temp}°C`
+        document.getElementById("location").innerHTML = location
+
+        document.getElementById("humidity").innerHTML = `${humidity} %`
+        document.getElementById("wind").innerHTML = `${wind} km/h`
+
+        console.log(data)
+        
+
+
+        
+        
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert(error); 
+    });
+
+
+
+} 
