@@ -2,7 +2,7 @@
 
 Sky Status PRO is a sleek and responsive weather app that provides real-time weather updates for any city. Built with **JavaScript, HTML, Tailwind CSS, and an API**, this app fetches live weather data and displays key weather details.  
 
-![Weather App Preview](./images/app-preview.jpg)  
+![Weather App Preview](./images/app-preview.png)  
 
 ## 🌟 Features  
 
